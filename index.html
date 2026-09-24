@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shambhavi Singh ✦ Pixel Portfolio & Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #120318;
+            --panel-bg: #1f062d;
+            --hot-pink: #ff2a85;
+            --pastel-pink: #ffb7c5;
+            --neon-purple: #c77dff;
+            --accent-yellow: #ffeb3b;
+            --text-light: #fff0f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* LOADING SCREEN */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Press Start 2P', monospace;
+            transition: opacity 0.6s ease;
+        }
+
+        .loader-heart {
+            font-size: 50px;
+            animation: bounce 0.6s infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        .loader-text {
+            color: var(--pastel-pink);
+            font-size: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            width: 250px;
+            height: 20px;
+            border: 4px solid var(--hot-pink);
+            padding: 2px;
+            background: #000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--hot-pink);
+            width: 0%;
+            transition: width 0.2s linear;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        /* BACKGROUND FLOATING HEARTS & SPARKLES */
+        .bg-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            color: var(--pastel-pink);
+            font-size: 16px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.8); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            background: var(--panel-bg);
+            border: 4px solid var(--hot-pink);
+            box-shadow: 6px 6px 0px var(--pastel-pink);
+            padding: 35px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 20px;
+            color: var(--pastel-pink);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px var(--hot-pink);
+        }
+
+        header p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pixel-btn {
+            font-family: 'Press Start 2P', monospace;
+            background: var(--hot-pink);
+            color: white;
+            border: 3px solid #fff;
+            padding: 12px 18px;
+            font-size: 9px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 4px 4px 0px #000;
+            transition: transform 0.1s, background 0.2s;
+            display: inline-block;
+        }
+
+        .pixel-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--pastel-pink);
+            background: #ff479b;
+        }
+
+        .pixel-btn.secondary {
+            background: var(--neon-purple);
+        }
+
+        /* SECTIONS */
+        section {
+            background: var(--panel-bg);
+            border: 4px solid var(--neon-purple);
+            box-shadow: 6px 6px 0px var(--hot-pink);
+            padding: 30px;
+            margin-bottom: 30px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.6s; }
+        section:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 13px;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p, li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style-type: '🎀  ';
+            padding-left: 20px;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #2b083f;
+            border: 2px solid var(--pastel-pink);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            color: var(--pastel-pink);
+            box-shadow: 3px 3px 0px var(--hot-pink);
+        }
+
+        /* MODAL POPUP */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--panel-bg);
+            border: 4px solid var(--hot-pink);
+            box-shadow: 8px 8px 0px var(--pastel-pink);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            font-family: 'Press Start 2P', monospace;
+            color: var(--accent-yellow);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--hot-pink);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 9px;
+            color: var(--pastel-pink);
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+        <div class="loader-heart">💖</div>
+        <div class="loader-text">LOADING SHAMBHAVI'S WORLD...</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- FLOATING BACKGROUND PARTICLES -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div class="container">
+        <header>
+            <h1>SHAMBHAVI SINGH</h1>
+            <p>Communication Design Student & Creative Strategist ✦</p>
+            <div class="badge-container">
+                <a href="https://www.instagram.com/shambhavising.h?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="pixel-btn">📷 WORK INSTAGRAM</a>
+                <button class="pixel-btn secondary" onclick="openModal()">✨ GET IN TOUCH</button>
+            </div>
+        </header>
+
+        <!-- SUMMARY SECTION -->
+        <section>
+            <h2>💖 ABOUT ME</h2>
+            <p>Creative and detail-oriented Communication Design student with a passion for branding, visual storytelling, and digital experiences[cite: 3]. Experienced in developing brand identities, marketing creatives, social media campaigns, website interfaces, and promotional content for businesses, entrepreneurs, and influencers[cite: 3].</p>
+            <p>Combining strong design thinking with entrepreneurial experience, I create impactful visual solutions that balance creativity with business objectives[cite: 3].</p>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section>
+            <h2>🎓 EDUCATION</h2>
+            <p><strong>Pearl Academy, Bengaluru</strong>[cite: 3]<br>Bachelor of Communication Design (Expected Graduation: April 2027)[cite: 3]</p>
+            <p><em>Relevant Coursework:</em> Branding & Identity Design, Visual Communication, Typography, UI/UX Design, Design Thinking, Illustration, Packaging Design, Advertising, Creative Strategy[cite: 3].</p>
+            <br>
+            <p><strong>G.D. Goenka Public School</strong>[cite: 3]<br>Senior Secondary (Class XII) & Secondary Education (Class X)[cite: 3]</p>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section>
+            <h2>💼 EXPERIENCE</h2>
+            <p><strong>Freelance Communication Designer (2023–Present)</strong>[cite: 3]</p>
+            <ul>
+                <li>Design logos, brand identities, and visual systems for startups, creators, and businesses[cite: 3].</li>
+                <li>Create posters, flyers, brochures, digital ads, and marketing materials[cite: 3].</li>
+                <li>Develop social media creatives and branding strategies for Instagram & Facebook[cite: 3].</li>
+                <li>Design website layouts, landing pages, and UI/UX concepts[cite: 3].</li>
+            </ul>
+            <br>
+            <p><strong>Entrepreneur & Business Operations (2023–Present)</strong>[cite: 3]</p>
+            <ul>
+                <li>Co-manage retail businesses, rental properties, and hospitality ventures[cite: 3].</li>
+                <li>Contribute to branding, customer experience, and marketing strategies[cite: 3].</li>
+                <li>Apply design thinking to enhance customer engagement and brand positioning[cite: 3].</li>
+            </ul>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section>
+            <h2>⚡ SKILLS & SOFTWARE</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Brand Identity</div>
+                <div class="skill-tag">UI/UX Design</div>
+                <div class="skill-tag">Visual Comm.</div>
+                <div class="skill-tag">Social Media</div>
+                <div class="skill-tag">Typography</div>
+                <div class="skill-tag">Figma & Framer</div>
+                <div class="skill-tag">Adobe Suite</div>
+                <div class="skill-tag">Unreal Engine</div>
+                <div class="skill-tag">Creative Strategy</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 SHAMBHAVI SINGH ✦ PIXEL PORTFOLIO</p>
+        </footer>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">[X]</button>
+            <h3>🎀 LET'S CONNECT!</h3>
+            <p>Email: <strong>contact.shammo@gmail.com</strong>[cite: 3]</p>
+            <p>Location: <strong>India</strong>[cite: 3]</p>
+            <br>
+            <a href="https://www.instagram.com/shambhavising.h?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="pixel-btn" style="display:inline-block; margin-top:10px;">VISIT INSTAGRAM WORK ID</a>
+        </div>
+    </div>
+
+    <script>
+        // Loading screen progress simulation
+        let width = 0;
+        const bar = document.getElementById('progressBar');
+        const loader = document.getElementById('loader');
+
+        const interval = setInterval(() => {
+            width += Math.floor(Math.random() * 20) + 10;
+            if (width >= 100) {
+                width = 100;
+                clearInterval(interval);
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 600);
+                }, 400);
+            }
+            bar.style.width = width + '%';
+        }, 150);
+
+        // Floating particles generator
+        const particlesContainer = document.getElementById('particles');
+        const symbols = ['💖', '✨', '🎀', '🌸', '⭐'];
+
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            particlesContainer.appendChild(p);
+
+            setTimeout(() => {
+                p.remove();
+            }, 6000);
+        }
+
+        setInterval(createParticle, 400);
+
+        // Modal controls
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
